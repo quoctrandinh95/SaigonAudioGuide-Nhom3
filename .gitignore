@@ -1,0 +1,24 @@
+# .NET build outputs and local IDE settings
+bin/
+obj/
+.vs/
+.idea/
+*.user
+*.suo
+
+# Local environment and runtime data
+.env
+.env.*
+!.env.example
+data/
+src/AudioGuide.API/wwwroot/uploads/
+
+# Dependencies and generated test outputs
+node_modules/
+TestResults/
+coverage/
+*.log
+
+# Operating system files
+.DS_Store
+Thumbs.db
