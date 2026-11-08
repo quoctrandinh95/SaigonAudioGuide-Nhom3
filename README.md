@@ -8,12 +8,6 @@
 - Doanh: thành viên.
 - Hậu: thành viên.
 
-## Trạng thái repository
-
-Repository đang có khung thư mục để nhóm bàn giao code trong 10 ngày. Chưa có solution, project hoặc code chức năng nên chưa thể build/chạy ứng dụng.
-
-Đồ án đã có bản hoàn chỉnh trước khi tạo repository này. Các commit ở đây ghi nhận thời điểm bàn giao, kiểm tra và hoàn thiện từng phần.
-
 ## Cấu trúc
 
 ```text
@@ -41,7 +35,6 @@ Chi tiết các thư mục con: [Quy ước cấu trúc repository](docs/CauTruc
 | Doanh | DAL, quản lý địa điểm/ngôn ngữ, thống kê lượt nghe và giao diện admin |
 | Hậu | API công khai, giao diện du khách, GPS, âm thanh, Ollama và kiểm thử liên quan |
 
-Mỗi thành viên thực hiện 1 commit công việc/ngày trong 10 ngày bằng tài khoản của mình. Các commit chuẩn bị repository được tính riêng.
 
 ## Làm việc hằng ngày
 
