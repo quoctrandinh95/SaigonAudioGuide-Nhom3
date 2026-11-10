@@ -4,7 +4,7 @@
 
 ## Thành viên
 
-- Quốc: nhóm trưởng.
+- Quốc: nhóm trưởng..
 - Doanh: thành viên.
 - Hậu: thành viên.
 
@@ -27,7 +27,11 @@ SaigonAudioGuide-Nhom3/
 
 Chi tiết các thư mục con: [Quy ước cấu trúc repository](docs/CauTrucRepo.md).
 
-## Phân công
+## Cấu hình môi trường
+
+Đã có cấu hình mẫu trong `.env.example` và `src/AudioGuide.API/appsettings.json`. Xem [hướng dẫn cấu hình và kết quả kiểm tra](docs/CauHinhMoiTruong.md) trước khi chạy.
+
+Repository đang được bàn giao từng phần, chưa có đủ code để chạy API hoặc kiểm thử tích hợp. Đồ án đã có bản hoàn chỉnh trước khi tạo repository này; các commit ghi nhận việc bàn giao và hoàn thiện code.
 
 | Thành viên | Phạm vi chính |
 |---|---|
