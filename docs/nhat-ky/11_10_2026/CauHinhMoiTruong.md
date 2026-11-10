@@ -1,10 +1,4 @@
-# Cấu hình môi trường và kiểm tra ngày 1–2
-
-## Trạng thái bàn giao
-
-Quốc đã bàn giao solution và project API/BLL/Tests ở commit `316ffa4` ngày 09/11/2026. `.gitignore` đã được thêm ở commit tạo khung `8a95d6c`. Hai file cấu hình của ngày 2 là `.env.example` và `src/AudioGuide.API/appsettings.json`.
-
-Tại thời điểm kiểm tra ngày 10/11/2026, Doanh đã đưa project DAL lên và các đường dẫn project trong solution/tham chiếu project đều tồn tại. Repo chưa có đủ mã khởi động, dịch vụ và kiểm thử; chưa thể xác nhận ứng dụng chạy hoặc build thành công. Các bước chạy dưới đây dùng khi các phần liên quan đã được bàn giao.
+# Cấu hình môi trường
 
 ## Hai cách cấp cấu hình
 
@@ -29,8 +23,6 @@ Bảng này đối chiếu với `docker-compose.yml` trong bản đồ án hoà
 | `OLLAMA_TIMEOUT_SECONDS` | `Ollama:TimeoutSeconds` | Mẫu 600 giây; validation dự án chấp nhận 30–3600 |
 | `TRUST_PROXY` | `Hosting:TrustProxy` | Mẫu `true` cho cấu hình Docker/tunnel của dự án; khi chạy trực tiếp giữ `false` nếu không có proxy |
 
-Chỉ commit `.env.example` chứa giá trị mẫu. Mật khẩu và khóa mẫu phải được thay bằng giá trị riêng khi triển khai. Không đưa `.env` hoặc khóa thực vào Git.
-
 ## Chuỗi kết nối MySQL
 
 | Nơi chạy API và DB | Host/port sử dụng | Ghi chú |
@@ -44,7 +36,7 @@ Không đổi cổng mặc định trong `appsettings.json` chỉ để chạy v
 Ví dụ PowerShell cho API chạy trực tiếp với MySQL cài trên máy, sau khi repo có đủ code và máy có .NET 10:
 
 ```powershell
-# Thay các giá trị mẫu trước khi chạy, không commit cấu hình riêng.
+
 $env:ConnectionStrings__Default = 'Server=localhost;Port=3306;Database=hcmc_audioguide;User=root;Password=MAT_KHAU_DB_CUA_BAN;CharSet=utf8mb4;'
 $env:Jwt__Key = 'THAY_BANG_KHOA_RIENG_CO_IT_NHAT_32_KY_TU'
 $env:Seed__AdminUsername = 'admin'
@@ -54,8 +46,6 @@ $env:Hosting__TrustProxy = 'false'
 
 dotnet run --project src/AudioGuide.API/AudioGuide.API.csproj
 ```
-
-Các biến trên áp dụng cho phiên PowerShell hiện tại. Nếu dùng MySQL của Compose từ máy host, đổi thành `Port=3307`.
 
 ## Các nhóm còn lại trong appsettings.json
 
@@ -73,12 +63,3 @@ Các biến trên áp dụng cho phiên PowerShell hiện tại. Nếu dùng MyS
 
 `Admin:LocalOnly` chưa khai báo trong JSON; middleware gốc dùng mặc định `true`, có thể ghi đè bằng `Admin__LocalOnly` hoặc biến `ADMIN_LOCAL_ONLY` qua Compose.
 
-## Kết quả kiểm tra thực tế ngày 10/11/2026
-
-- File solution và 3 project của Quốc khớp bản đồ án gốc; cấu trúc XML hợp lệ.
-- Các project được khai báo trong solution và các `ProjectReference` hiện trỏ tới file tồn tại, bao gồm project DAL do Doanh đã bàn giao.
-- `appsettings.json` đọc được bằng `ConvertFrom-Json`, đủ các nhóm cấu hình đang được bản đồ án gốc sử dụng; nội dung khớp bản gốc.
-- Khóa JWT mẫu trong JSON dài 51 ký tự; khóa mẫu trong `.env.example` dài 48 ký tự. Đây chỉ là kiểm tra độ dài, không phải xác nhận an toàn của khóa mẫu.
-- Đã đối chiếu các biến môi trường với Compose gốc; bổ sung `TRUST_PROXY` vào `.env.example` để thể hiện biến Compose đã hỗ trợ.
-- `.env` và `.env.local` bị Git bỏ qua; `.env.example` không bị bỏ qua. Không có `.env` hoặc `.env.local` trong danh sách file được theo dõi.
-- Chưa chạy restore/build/API/MySQL/Ollama/Docker hoặc kiểm thử tích hợp cho repo mới. Các mục này cần kiểm tra khi có đủ code và dịch vụ.
